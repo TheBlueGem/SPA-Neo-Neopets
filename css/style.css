@@ -1,0 +1,59 @@
+
+body{
+    width: 1024px;
+    margin: 0 auto;
+    background-color: yellow;    
+    font-family: 'Oxygen', sans-serif;    
+}
+
+h1, h2, h3, h4, h5{
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+a{
+   
+}
+
+.right{
+    float: right;
+}
+
+.panel .content-block p{    
+    background-color: darkorange;    
+    height: 20px;
+    padding: 20px;
+    margin: 0;
+}
+
+.views{
+    background-color: orangered;
+    padding: 20px;
+}
+
+.remove-deco{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.shop-item, .inventory-item{
+    display: inline-block;
+    padding: 10px;
+    width: 20%;
+    height: 240px;
+}
+
+.form-field{
+    margin-bottom: 10px;
+}
+
+.form-field label{
+    display: inline-block;
+    width: 75px;
+     
+}
+
+.shop-item .link, .inventory-item .link{
+    text-decoration: none;
+    color: initial;
+}
