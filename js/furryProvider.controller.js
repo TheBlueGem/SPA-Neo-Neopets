@@ -30,6 +30,16 @@ furryModule.config(function ($routeProvider, $locationProvider) {
             templateUrl: 'pages/shop/item.html',
             controller: 'furryShopController'
         })
+        
+        .when("/shop/manage", {
+            templateUrl: 'pages/shop/manage-shop.html',
+            controller: 'furryShopController'
+        })
+
+        .when("/shop/edit/item/:id", {
+            templateUrl: 'pages/shop/edit-item.html',
+            controller: 'furryShopController'
+        })
 
 
 

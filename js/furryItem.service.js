@@ -1,10 +1,12 @@
-furryModule.service('itemService', function($scope){
-    $scope.getItems = function(){
+furryModule.service('itemService', function(){
+    this.getItems = function(){
+        if(localStorage.getItem('shopItems') != undefined){
         return JSON.parse(localStorage.getItem('shopItems'));
+        }
     }
 
-    $scope.getItem = function(itemId){
-        var items = getItems();
+    this.getItem = function(){
+        var items = this.getItems();
         var selectedItem = {};
 
         items.forEach(function(item) {
@@ -16,10 +18,11 @@ furryModule.service('itemService', function($scope){
         return selectedItem;
     }
 
-    $scope.addItem = function(item){
+    this.addItem = function(){
+        debugger;
         var items = [];
-        localStorage.getItems();
-        items.push(item);
+        items = this.getItems();
+        items.push($scope.item);
         localStorage.setItem("shopItems", JSON.stringify(items));
     }
 })

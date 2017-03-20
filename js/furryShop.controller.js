@@ -1,17 +1,40 @@
-furryModule.controller("furryShopController", function($scope, $itemService){    
-    
-   $scope.shopItems = [
-       {id:1, name:"koekje", price:"2", image:"/images/200x200.png"},
-       {id:2, name:"snoepje", price:"5", image:"/images/200x200.png"},
-       {id:3, name:"broodje", price:"15", image:"/images/200x200.png"},
-       {id:4, name:"melk", price:"10", image:"/images/200x200.png"},
-       {id:5, name:"steroids", price:"1000", image:"/images/200x200.png"},
-   ] 
+furryModule.controller("furryShopController", function ($scope, storageService, $timeout, $location, $routeParams) {
+    var key = "shopItems";
+    var dropzone = new dropzone("div#item-dropzone", { url: "file/post" })
+    $scope.shopItems = storageService.getFromStorage(key);
 
-   $scope.item = {};
+    $timeout(function () {
+        $scope.item = $scope.getShopItem($routeParams.id);
+    })
 
-   $scope.addShopItem = function(){       
-       itemService.addItem()
-       console.log("Added");
-   } 
+
+    $scope.addShopItem = function () {
+        storageService.saveToStorage(key, $scope.item);
+        $scope.item.name = '';
+        $scope.item.price = '';
+        $location.path("/shop/manage")
+        console.log("Added");
+    }
+
+    $scope.getShopItem = function (id) {
+        $timeout(function () {
+            $scope.shopItems.forEach(function (item) {
+                if (item.id === id) {
+                    $scope.item = item;
+                }
+            }, this);
+        })
+
+    }
+
+    $scope.editShopItem = function () {
+        storageService.updateStorage(key, $scope.item.id, $scope.item);
+        $location.path("/shop/manage");
+        console.log("Edited");
+    }
+
+    $scope.removeShopItem = function (id) {
+        storageService.removeFromStorage(key, id);
+        $scope.shopItems = storageService.getFromStorage(key);
+    }
 });
