@@ -16,22 +16,16 @@
     <!-- Page, "data-page" contains page name -->
     <div data-page="index" class="page">
         <!-- Scrollable page content -->
-        <div class="page-content">
-            <div class="player-info">
-                <h2>Player info</h2>
-                <ul class="remove-deco">
-                    <li>{{player.name}}</li>
-                    <li>Date Joined: {{player.dateJoined}}</li>
-                    <li><img src="{{player.image}}" /></li>
-                </ul>
-            </div>
-            <div class="inventory">
-                <h4>Inventory</h4>
-                <ul class="remove-deco">
-                    <li class="inventory-item" ng-repeat="item in player.inventory">                        
-                            <span class="shop-item-name">{{item.name}}</span>
-                            <img src="{{item.image}}" />
-                            <span class="shop-item-price">Amount: {{item.amount}}</span>                        
+        <div class="page-content">  
+            <div class="shop-wrapper">
+                <h2>Shop</h2>
+                <ul class="remove-deco shop-items">
+                    <li class="item" ng-repeat="item in shopItems">
+                        <a class="link" ng-href="#/shop/item/{{item.id}}">
+                        <span class="shop-item-name">{{item.name}}</span>
+                        <img src="{{item.image}}" />
+                        <span class="shop-item-price">Price: {{item.price}}</span>
+                        </a>
                     </li>
                 </ul>
             </div>

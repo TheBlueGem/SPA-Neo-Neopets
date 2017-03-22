@@ -20,12 +20,14 @@
             <div class="shop-wrapper">
                 <h2>Shop</h2>
                 <ul class="remove-deco shop-items">
-                    <li class="shop-item" ng-repeat="item in shopItems">
+                    <li class="item" ng-repeat="item in shopItems">
                         <a class="link" ng-href="#/shop/item/{{item.id}}">
                             <span class="shop-item-name">{{item.name}}</span>
                             <img src="{{item.image}}" />
                             <span class="shop-item-price">Price: {{item.price}}</span>
                         </a>
+                        <a class="link" ng-href="#/shop/manage" ng-click="featureItem(item)" ng-if="!item.featured">Feature</a>
+                        <a class="link" ng-href="#/shop/manage" ng-click="unfeatureItem(item)" ng-if="item.featured">Unfeature</a>
                         <a class="link" ng-href="#/shop/edit/item/{{item.id}}">Edit</a>
                         <a class="link" ng-href="#/shop/manage" ng-click="removeShopItem(item.id)">Delete</a>
                     </li>

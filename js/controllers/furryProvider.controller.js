@@ -11,13 +11,28 @@ furryModule.config(function ($routeProvider, $locationProvider) {
             controller: 'furryAboutController'
         })
 
-        .when("/player-profile", {
-            templateUrl: 'pages/player-profile.html',
+        .when("/login", {
+            templateUrl: 'pages/player/login.html',
+            controller: 'furryPlayerController'
+        })
+
+        .when("/register", {
+            templateUrl: 'pages/player/register.html',
+            controller: 'furryPlayerController'
+        })
+
+        .when("/player/:id", {
+            templateUrl: 'pages/player/player-profile.html',
+            controller: 'furryPlayerController'
+        })
+
+        .when("/player/edit/:id", {
+            templateUrl: 'pages/player/edit-profile.html',
             controller: 'furryPlayerController'
         })
 
         .when("/shop", {
-            templateUrl: 'pages/shop.html',
+            templateUrl: 'pages/shop/shop.html',
             controller: 'furryShopController'
         })
 
@@ -30,7 +45,7 @@ furryModule.config(function ($routeProvider, $locationProvider) {
             templateUrl: 'pages/shop/item.html',
             controller: 'furryShopController'
         })
-        
+
         .when("/shop/manage", {
             templateUrl: 'pages/shop/manage-shop.html',
             controller: 'furryShopController'

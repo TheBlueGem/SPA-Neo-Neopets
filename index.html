@@ -20,7 +20,9 @@
   <!-- Left panel with reveal effect-->
   <div class="panel panel-left panel-reveal">
     <div class="content-block">
-      <p>Left panel content goes here</p>
+      <h5>~Furry Simulator!~</h5>
+      <a class="link pull-right" href="#/login" ng-if="!currentPlayer">Login</a>
+      <a class="link pull-right" href="#" ng-if="currentPlayer" ng-click="logout()">Logout</a>
     </div>
   </div>
   <!-- Views -->
@@ -33,23 +35,26 @@
         <div class="toolbar-inner">
           <!-- Toolbar links -->
           <a href="#" class="link">Home</a>
-          <a href="#/player-profile" class="link">Profile</a>
-          <a href="#/shop" class="link">Shop</a>
+          <a href="#/player/{{currentPlayer.id}}" class="link">Profile</a>
+          <a href="#/shop" class="link shop">Shop</a>
           <a href="#/shop/manage" class="link">Manage Shop</a>
+          <a href="#/register" class="link">Register</a>
           <a href="#/about" class="link">About</a>
         </div>
       </div>
     </div>
   </div>
   
-  <script src="js/angular.js"></script>
-  <script src="js/angular-route.js"></script>
-  <script src="js/dropzone.js"></script>
-  <script type="text/javascript" src="js/furryMain.controller.js"></script>
-  <script type="text/javascript" src="js/furryProvider.controller.js"></script>
-  <script type="text/javascript" src="js/furryShop.controller.js"></script>
-  <script type="text/javascript" src="js/furryPlayer.controller.js"></script>
-  <script type="text/javascript" src="js/furryStorage.Service.js"></script>
+  <script src="js/libraries/angular.js"></script>
+  <script src="js/libraries/angular-route.js"></script>
+  <script src="js/libraries/dropzone.js"></script>
+  <script type="text/javascript" src="js/controllers/furryMain.controller.js"></script>
+  <script type="text/javascript" src="js/controllers/furryProvider.controller.js"></script>
+  <script type="text/javascript" src="js/controllers/furryShop.controller.js"></script>
+  <script type="text/javascript" src="js/controllers/furryPlayer.controller.js"></script>
+  <script type="text/javascript" src="js/services/furryStorage.service.js"></script>
+  <script type="text/javascript" src="js/services/furryPlayer.service.js"></script>
+  <script type="text/javascript" src="js/services/furryItem.service.js"></script>
 </body>
 
 </html>

@@ -17,23 +17,14 @@
     <div data-page="index" class="page">
         <!-- Scrollable page content -->
         <div class="page-content">
-            <!--<div class="featured-games">
-                <ol>
-                    <li class="featured-game" ng-repeat="getFeaturedGames"></li>
-                </ol>
-            </div>-->            
-            <div class="featured-items-wrapper">
-            <h2>Featured Items</h2>
-                <ul class="featured-items">
-                    <li class="item" ng-repeat="item in featuredItems">
-                        <a class="link" ng-href="#/shop/item/{{item.id}}">
-                        <span class="shop-item-name">{{item.name}}</span>
-                        <img src="{{item.image}}" />
-                        <span class="shop-item-price">Price: {{item.price}}</span>
-                        </a>
-                    </li>
-                </ul>         
-            </div>
+            <h2>Register</h2>
+            <form class="form login" ng-submit="register()">
+                <label>Login name</label>
+                <input type="text" ng-model="playerLogin.name" />
+                <label>Password</label>
+                <input type="text" ng-model="playerLogin.password" />
+                <button type="submit">Register</button>
+            </form>
         </div>
     </div>
 </div>

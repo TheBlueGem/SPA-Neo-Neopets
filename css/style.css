@@ -20,14 +20,18 @@ h1, h2, h3, h4, h5{
     border: 2px dashed;    
 }
 
-.right{
+.pull-right{
     float: right;
 }
 
-.panel .content-block p{    
-    background-color: darkorange;    
+.panel .content-block{
+    background-color: darkorange;        
     height: 20px;
     padding: 20px;
+}
+
+.panel .content-block h5{    
+    display: inline;    
     margin: 0;
 }
 
@@ -42,7 +46,7 @@ h1, h2, h3, h4, h5{
     margin: 0;
 }
 
-.shop-item, .inventory-item{
+.item, .item{
     display: inline-block;
     padding: 10px;
     width: 20%;
@@ -59,7 +63,7 @@ h1, h2, h3, h4, h5{
      
 }
 
-.shop-item .link, .inventory-item .link{
+.item .link{
     text-decoration: none;
     color: initial;
 }

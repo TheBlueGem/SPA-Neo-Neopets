@@ -19,6 +19,7 @@
         <div class="page-content">
             <div class="player-info">
                 <h2>Add Item</h2>
+                <div id="item-dropzone"></div> 
                 <form ng-submit="addShopItem()">
                     <div class="form-field">
                         <label>Name:</label>
@@ -29,8 +30,9 @@
                         <input type="number" ng-model="item.price" required/>
                     </div>
                     <div class="form-field">
-                        <label>Image:</label>
-                        <img src="{{item.image}}" />
+                        <label>Image:</label>                        
+                        <!--<div class="dropzone" id="item-dropzone"></div>-->
+                        <!--<img src="{{item.image}}" />-->
                     </div>
                     <div class="form-field">
                         <button type="submit" class="button">Save</button>
