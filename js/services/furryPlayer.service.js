@@ -10,6 +10,7 @@ furryModule.service('playerService', function (storageService) {
     }
 
     this.addPlayer = function(player) {
+        player.cash = "1000";
         storageService.saveToStorage(key, player);
     }
 

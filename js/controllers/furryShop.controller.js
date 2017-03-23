@@ -1,10 +1,41 @@
-furryModule.controller("furryShopController", function ($scope, itemService, $timeout, $location, $routeParams) {
+furryModule.controller("furryShopController", function ($rootScope, $scope, storageService, itemService, $timeout, $location, $routeParams) {
 
     $scope.shopItems = itemService.getItems();
 
     $timeout(function () {
         $scope.item = $scope.getShopItem($routeParams.id);
     })
+
+    $scope.addToCart = function (id) {
+        var element = document.getElementById(id);
+
+        var cartItem = {
+            id: id,
+            amount: element.getElementsByClassName("amount-input")[0].value
+        }
+
+        var cart = storageService.getFromStorage("cart");
+
+        var alreadyInCart = false;
+        cart.forEach(function (item) {
+            if (item.id === id) {
+                cartItem.amount = (parseInt(item.amount) + parseInt(cartItem.amount)).toString();
+                alreadyInCart = true;
+            }
+        }, this);
+
+        if (alreadyInCart) {
+            storageService.updateStorage("cart", cartItem.id, cartItem);
+        }
+        else {
+            storageService.saveToStorage("cart", cartItem, true);
+        }
+        $rootScope.$broadcast('cartUpdated');
+    }
+
+    $scope.removeFromCart = function (id) {
+        storageService.removeFromStorage("cart", id);
+    }
 
     $scope.addShopItem = function () {
         itemService.addItem($scope.item);
@@ -34,7 +65,7 @@ furryModule.controller("furryShopController", function ($scope, itemService, $ti
     }
 
     $scope.getFeaturedItem = function (id) {
-       return itemService.getFeaturedItem(id);
+        return itemService.getFeaturedItem(id);
     }
 
     $scope.featureItem = function (item) {

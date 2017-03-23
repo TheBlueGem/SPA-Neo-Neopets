@@ -30,15 +30,24 @@
     <!-- Your main view, should have "view-main" class -->
     <div class="view view-main">
       <div ng-view></div>
+      <ol class="cart remove-deco">
+        <li ng-repeat="item in cart">
+          <span>Item: {{item.name}}</span>
+          <span>Amount: {{item.amount}}</span>
+        </li>
+        <li>
+          <span>Total: {{cart.total}}</span>
+        </li>
+      </ol>
       <!-- Bottom Toolbar-->
       <div class="toolbar">
         <div class="toolbar-inner">
           <!-- Toolbar links -->
           <a href="#" class="link">Home</a>
-          <a href="#/player/{{currentPlayer.id}}" class="link">Profile</a>
+          <a href="#/player/{{currentPlayer.id}}" class="link" ng-if="currentPlayer">Profile</a>          
           <a href="#/shop" class="link shop">Shop</a>
           <a href="#/shop/manage" class="link">Manage Shop</a>
-          <a href="#/register" class="link">Register</a>
+          <a href="#/register" class="link" ng-if="currentPlayer">Register</a>
           <a href="#/about" class="link">About</a>
         </div>
       </div>
@@ -47,7 +56,6 @@
   
   <script src="js/libraries/angular.js"></script>
   <script src="js/libraries/angular-route.js"></script>
-  <script src="js/libraries/dropzone.js"></script>
   <script type="text/javascript" src="js/controllers/furryMain.controller.js"></script>
   <script type="text/javascript" src="js/controllers/furryProvider.controller.js"></script>
   <script type="text/javascript" src="js/controllers/furryShop.controller.js"></script>

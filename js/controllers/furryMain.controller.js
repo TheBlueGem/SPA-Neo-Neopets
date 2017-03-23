@@ -1,21 +1,23 @@
 var furryModule = angular.module("furryModule", ['ngRoute']);
 
-furryModule.controller("furryMainController", function($scope, itemService, playerService){ 
+furryModule.controller("furryMainController", function ($scope, itemService, playerService, storageService) {
     $scope.featuredItems = itemService.getFeaturedItems();
+    $scope.currentPlayer = playerService.getCurrentPlayer();
+    $scope.cart = storageService.getFromStorage("cart");
 
-    if($scope.currentPlayer === undefined){
-        $scope.currentPlayer = playerService.getCurrentPlayer();
-    }
-    
-    $scope.$on('login', function(){
+    $scope.$on('cartUpdated', function () {
+        $scope.cart = storageService.getFromStorage("cart");
+    })
+
+    $scope.$on('login', function () {
         $scope.currentPlayer = playerService.getCurrentPlayer();
     });
 
-    $scope.logout = function(){
+    $scope.logout = function () {
         playerService.removeCurrentPlayer();
         $scope.currentPlayer = undefined;
     }
-    
+
     console.log("HELP ME")
 });
 

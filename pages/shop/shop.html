@@ -20,12 +20,15 @@
             <div class="shop-wrapper">
                 <h2>Shop</h2>
                 <ul class="remove-deco shop-items">
-                    <li class="item" ng-repeat="item in shopItems">
+                    <li class="item" id="{{item.id}}" ng-repeat="item in shopItems">
                         <a class="link" ng-href="#/shop/item/{{item.id}}">
                         <span class="shop-item-name">{{item.name}}</span>
                         <img src="{{item.image}}" />
                         <span class="shop-item-price">Price: {{item.price}}</span>
                         </a>
+                        <label>Amount:</label>
+                        <input type="number" class="amount-input" value="1"/>
+                        <a class="link" href="#/shop" ng-click="addToCart(item.id)">Add to Cart</a>
                     </li>
                 </ul>
             </div>

@@ -1,25 +1,31 @@
 furryModule.service('storageService', function () {
-    this.saveToStorage = function (key, data) {
+    this.saveToStorage = function (key, data, hasIdentity = false) {
         if (typeof (Storage) !== undefined) {
             if (localStorage.getItem(key) == null) {
-                data.id = 1;
+                if (!hasIdentity) {
+                    data.id = 1;
+                }
+
                 localStorage.setItem(key, JSON.stringify([data]));
             } else {
                 var temp = JSON.parse(localStorage.getItem(key)) || [];
 
-                var highestId = 0;
-                for (var i = 0; i < temp.length; i++) {
-                    if (temp[i].id > highestId) {
-                        highestId = temp[i].id;
+                if (!hasIdentity) {
+                    var highestId = 0;
+                    for (var i = 0; i < temp.length; i++) {
+                        if (temp[i].id > highestId) {
+                            highestId = temp[i].id;
+                        }
                     }
-                }   
 
-                data.id = (parseInt(highestId) + 1).toString();
-
+                    data.id = (parseInt(highestId) + 1).toString();
+                }
 
                 temp.push(data);
                 localStorage.setItem(key, JSON.stringify(temp));
             }
+
+
         }
     };
 
