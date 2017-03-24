@@ -10,6 +10,7 @@
   <!-- Your app title -->
   <title>Furry Simulator</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body ng-controller="furryMainController">
@@ -21,6 +22,9 @@
   <div class="panel panel-left panel-reveal">
     <div class="content-block">
       <h5>~Furry Simulator!~</h5>
+      <div class="player-stats" ng-if="currentPlayer">
+      <span class="credits">Credits: {{currentPlayer.credits}}</span>
+      </div>
       <a class="link pull-right" href="#/login" ng-if="!currentPlayer">Login</a>
       <a class="link pull-right" href="#" ng-if="currentPlayer" ng-click="logout()">Logout</a>
     </div>
@@ -30,32 +34,41 @@
     <!-- Your main view, should have "view-main" class -->
     <div class="view view-main">
       <div ng-view></div>
-      <ol class="cart remove-deco">
-        <li ng-repeat="item in cart">
-          <span>Item: {{item.name}}</span>
-          <span>Amount: {{item.amount}}</span>
-        </li>
-        <li>
-          <span>Total: {{cart.total}}</span>
-        </li>
-      </ol>
+      <div class="cart fade-element-in" ng-if="cart.length">
+        <h2>Cart</h2>
+        <ol class="remove-deco">
+          <li ng-repeat="item in cart">
+            <span>Item: {{item.name}}</span>
+            <span>Amount: {{item.amount}}</span>
+            <span>Price: {{item.price}}</span>
+            <button ng-click="removeFromCart(item.id)">Remove</button>
+          </li>
+          <li>
+            <span>Total: {{cart.total}}</span>
+            <button ng-click="checkout()">Checkout!</button>
+          </li>
+        </ol>
+      </div>
       <!-- Bottom Toolbar-->
       <div class="toolbar">
         <div class="toolbar-inner">
           <!-- Toolbar links -->
           <a href="#" class="link">Home</a>
-          <a href="#/player/{{currentPlayer.id}}" class="link" ng-if="currentPlayer">Profile</a>          
+          <a href="#/player/{{currentPlayer.id}}" class="link" ng-if="currentPlayer">Profile</a>
           <a href="#/shop" class="link shop">Shop</a>
           <a href="#/shop/manage" class="link">Manage Shop</a>
-          <a href="#/register" class="link" ng-if="currentPlayer">Register</a>
+          <a href="#/register" class="link" ng-if="!currentPlayer">Register</a>
           <a href="#/about" class="link">About</a>
         </div>
       </div>
     </div>
   </div>
-  
+
   <script src="js/libraries/angular.js"></script>
   <script src="js/libraries/angular-route.js"></script>
+  <script src="js/libraries/angular-cookies.js"></script>
+  <script src="js/libraries/angular-animate.js"></script>
+  <script src="js/libraries/sweetalert-dev.js"></script>
   <script type="text/javascript" src="js/controllers/furryMain.controller.js"></script>
   <script type="text/javascript" src="js/controllers/furryProvider.controller.js"></script>
   <script type="text/javascript" src="js/controllers/furryShop.controller.js"></script>
@@ -63,6 +76,7 @@
   <script type="text/javascript" src="js/services/furryStorage.service.js"></script>
   <script type="text/javascript" src="js/services/furryPlayer.service.js"></script>
   <script type="text/javascript" src="js/services/furryItem.service.js"></script>
+  <script type="text/javascript" src="js/services/furryCart.service.js"></script>
 </body>
 
 </html>

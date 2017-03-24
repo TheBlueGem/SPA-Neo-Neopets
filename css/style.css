@@ -20,6 +20,11 @@ h1, h2, h3, h4, h5{
     border: 2px dashed;    
 }
 
+.player-stats{
+    display: inline;
+    margin-left: 500px;        
+}
+
 .pull-right{
     float: right;
 }
@@ -67,3 +72,75 @@ h1, h2, h3, h4, h5{
     text-decoration: none;
     color: initial;
 }
+
+.cart{
+    position: absolute;
+    top: 75px;
+    right: 0;
+    background-color: olivedrab;    
+    padding: 10px;
+}
+
+.cart ol{
+    width: 150px;
+}
+
+.cart li{
+    margin-bottom: 10px;
+    background-color: olive;
+    padding: 10px;
+}
+
+.cart li:last-child{
+    margin-bottom: 0;
+}
+
+.cart li span{
+    display: block;
+}
+
+/* Angular Animate */
+.fade-element-in.ng-enter {
+  transition: 0.8s linear all;
+  opacity: 0;
+}
+
+.fade-element-in-init .fade-element-in.ng-enter {
+  opacity: 1;
+}
+
+.fade-element-in.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+
+.fade-element-in.ng-leave {
+  transition: 0.3s linear all;
+  opacity: 1;
+}
+.fade-element-in.ng-leave.ng-leave-active {
+  opacity: 0;
+}
+
+.alert{
+    top: 200px;
+    width: 300px;
+    margin-left: -170px;
+}
+
+.alert h2{
+    font-size: 16px;
+    line-height: 4px;
+}
+
+.alert p{
+    font-size: 14px;
+}
+
+.alert[data-has-confirm-button=false][data-has-cancel-button=false]{
+    padding-bottom: 0;
+}
+
+.sweet-overlay{
+    background: transparent;
+}
+

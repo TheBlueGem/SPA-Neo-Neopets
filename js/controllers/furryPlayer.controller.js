@@ -1,6 +1,5 @@
 furryModule.controller("furryPlayerController", function ($scope, $rootScope, $location, $timeout, $routeParams, playerService) {
-    var key = "players"
-    
+     
     if (playerService.getCurrentPlayer() !== undefined) {
         $scope.currentPlayer = playerService.getCurrentPlayer();
     }
@@ -57,7 +56,7 @@ furryModule.controller("furryPlayerController", function ($scope, $rootScope, $l
             $scope.players.forEach(function (player) {
                 if (player.name === $scope.playerLogin.name && player.password === $scope.playerLogin.password) {
                     playerService.setCurrentPlayer(player);
-                    $rootScope.$broadcast('login');
+                    $rootScope.$broadcast('currentPlayerUpdated');
                     $timeout(function(){
                         $location.path("/");
                     }, 50)                    

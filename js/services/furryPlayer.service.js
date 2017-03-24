@@ -1,6 +1,5 @@
 furryModule.service('playerService', function (storageService) {
-    var key = "players";
-
+ 
     this.setCurrentPlayer = function (player) {
         localStorage.setItem("currentPlayer", JSON.stringify(player));
     }
@@ -10,12 +9,12 @@ furryModule.service('playerService', function (storageService) {
     }
 
     this.addPlayer = function(player) {
-        player.cash = "1000";
-        storageService.saveToStorage(key, player);
+        player.credits = "1000";
+        storageService.saveToStorage("players", player);
     }
 
     this.getPlayers = function(){
-        var players = storageService.getFromStorage(key);
+        var players = storageService.getFromStorage("players");
         if(players == undefined){
             players = [];
         }
@@ -26,8 +25,19 @@ furryModule.service('playerService', function (storageService) {
         return JSON.parse(localStorage.getItem("currentPlayer"));
     }
 
+    this.getPlayer = function(id){
+        var players = storageService.getFromStorage("players");
+        var player = null;
+        players.forEach(function(current) {
+            if(current.id === id){
+                player = current;
+            }
+        }, this);
+        return player;
+    }
+
     this.updatePlayer = function(player){
         this.setCurrentPlayer(player);
-        storageService.updateStorage(key, player.id, player);
+        storageService.updateStorage("players", player.id, player);
     }
 });
