@@ -1,4 +1,4 @@
-furryModule.service('cartService', function ($rootScope, $cookies, $location, itemService, playerService) {
+furryModule.service('cartService', function ($rootScope, $cookies, $location, itemService, playerService, inventoryService) {
 
     this.addToCart = function(id){
         var element = document.getElementById(id);
@@ -72,16 +72,21 @@ furryModule.service('cartService', function ($rootScope, $cookies, $location, it
             this.emptyCart();
             currentPlayer.credits = credits.toString();
             
-            playerService.updatePlayer(currentPlayer);
-            playerService.setCurrentPlayer(currentPlayer);
+            cart.forEach(function(item) {
+                inventoryService.addItemToInventory(item, currentPlayer);
+            }, this);
+
             swal({
-                title: "Your checkout was succesful!",
+                title: "Your checkout was successful!",
                 text: "You have " + credits + " left",
                 timer: 2000,
                 showConfirmButton: false,
                 animation: "slide-from-top",
                 customClass: "alert"
-            });            
+            });      
+            
+            playerService.updatePlayer(currentPlayer);
+            playerService.setCurrentPlayer(currentPlayer);      
             $rootScope.$broadcast("currentPlayerUpdated");
         }
     }

@@ -21,15 +21,16 @@
                 <h2>Shop</h2>
                 <ul class="remove-deco shop-items">
                     <li class="item" ng-repeat="item in shopItems">
-                        <a class="link" ng-href="#/shop/item/{{item.id}}">
-                            <span class="shop-item-name">{{item.name}}</span>
-                            <img src="{{item.image}}" />
-                            <span class="shop-item-price">Price: {{item.price}}</span>
-                        </a>
+                        <span class="shop-item-name">{{item.name}}</span>
+                        <img src="{{item.image}}" />
+                        <span class="shop-item-price">Price: {{item.price}}</span>
+
                         <a class="link" ng-href="#/shop/manage" ng-click="featureItem(item)" ng-if="!item.featured">Feature</a>
                         <a class="link" ng-href="#/shop/manage" ng-click="unfeatureItem(item)" ng-if="item.featured">Unfeature</a>
                         <a class="link" ng-href="#/shop/edit/item/{{item.id}}">Edit</a>
-                        <a class="link" ng-href="#/shop/manage" ng-click="removeShopItem(item.id)">Delete</a>
+                        <a class="link" ng-href="#/shop/manage" ng-click="hideShopItem(item.id)" ng-if="!item.hidden">Hide</a>
+                        <a class="link" ng-href="#/shop/manage" ng-click="hideShopItem(item.id)" ng-if="item.hidden">Show</a>
+                        <a hidden class="link" ng-href="#/shop/manage" ng-click="removeShopItem(item.id)">Delete</a>
                     </li>
                 </ul>
                 <a class="link" ng-href="#/shop/add-item">Add Item</a>

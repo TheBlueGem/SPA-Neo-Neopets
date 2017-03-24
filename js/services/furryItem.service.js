@@ -54,5 +54,20 @@ furryModule.service('itemService', function(storageService){
         item.featured = false;
         this.updateItem(item)
     }
+
+    this.hideItem = function(id){
+         var item = this.getItem(id);
+
+        if(item.hidden == false || item.hidden == null){
+            item.hidden = true;   
+            item.featured = false;
+        }
+        else
+        {
+            item.hidden = false;
+        }
+        
+        this.updateItem(item);        
+    }
     
 })

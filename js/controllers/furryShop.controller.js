@@ -30,7 +30,12 @@ furryModule.controller("furryShopController", function ($scope, cartService, ite
 
     $scope.removeShopItem = function (id) {
         itemService.removeItem(id);
-        $scope.shopItems = itemService.getShopItems();
+        $scope.shopItems = itemService.getItems();
+    }
+
+    $scope.hideShopItem = function(id){
+        itemService.hideItem(id);       
+        $scope.shopItems = itemService.getItems();
     }
 
     $scope.getFeaturedItems = function () {

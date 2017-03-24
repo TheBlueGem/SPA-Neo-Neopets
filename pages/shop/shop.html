@@ -20,7 +20,7 @@
             <div class="shop-wrapper">
                 <h2>Shop</h2>
                 <ul class="remove-deco shop-items">
-                    <li class="item" id="{{item.id}}" ng-repeat="item in shopItems">
+                    <li class="item" id="{{item.id}}" ng-repeat="item in shopItems" ng-if="!item.hidden">
                         <a class="link" ng-href="#/shop/item/{{item.id}}">
                         <span class="shop-item-name">{{item.name}}</span>
                         <img src="{{item.image}}" />
