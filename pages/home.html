@@ -21,18 +21,20 @@
                 <ol>
                     <li class="featured-game" ng-repeat="getFeaturedGames"></li>
                 </ol>
-            </div>-->            
+            </div>-->
             <div class="featured-items-wrapper">
-            <h2>Featured Items</h2>
+                <h2>Featured Items</h2>
                 <ul class="featured-items">
                     <li class="item" ng-repeat="item in featuredItems">
                         <a class="link" ng-href="#/shop/item/{{item.id}}">
-                        <span class="shop-item-name">{{item.name}}</span>
-                        <img src="{{item.image}}" />
-                        <span class="shop-item-price">Price: {{item.price}}</span>
+                            <span class="shop-item-name">{{item.name}}</span>
+                            <div class="item-image-container">
+                                <img class="item-image" src="{{item.image}}" />
+                            </div>
+                            <span class="shop-item-price">Price: {{item.price}}</span>
                         </a>
                     </li>
-                </ul>         
+                </ul>
             </div>
         </div>
     </div>

@@ -14,12 +14,6 @@ h1, h2, h3, h4, h5{
    margin-bottom: 10px;
 }
 
-.dropzone{
-    width: 200px;
-    height: 200px;
-    border: 2px dashed;    
-}
-
 .player-stats{
     display: inline;
     margin-left: 500px;        
@@ -66,6 +60,10 @@ h1, h2, h3, h4, h5{
     display: inline-block;
     width: 75px;
      
+}
+
+.form-field .image-input{
+    margin-bottom: 10px;    
 }
 
 .item .link{
@@ -144,3 +142,11 @@ h1, h2, h3, h4, h5{
     background: transparent;
 }
 
+.item-image{
+    width: 200px;
+}
+
+.item-image-container{
+    height: 200px;
+    width: 200px;
+}

@@ -1,7 +1,11 @@
-furryModule.controller("furryPlayerController", function ($scope, $rootScope, $location, $timeout, $routeParams, playerService) {
+furryModule.controller("furryPlayerController", function ($scope, $rootScope, $location, $timeout, $routeParams, playerService, itemService) {
      
     if (playerService.getCurrentPlayer() !== undefined) {
         $scope.currentPlayer = playerService.getCurrentPlayer();
+        $scope.currentPlayer.inventory.forEach(function(item) {
+            var storageItem = itemService.getItem(item.id);
+            item.image = storageItem.image;
+        }, this);
     }
 
     $scope.playerLogin = {

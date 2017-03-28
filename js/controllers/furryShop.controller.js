@@ -1,9 +1,13 @@
-furryModule.controller("furryShopController", function ($scope, cartService, itemService, $timeout, $location, $routeParams) {
+furryModule.controller("furryShopController", function ($scope, $http, cartService, itemService, $timeout, $location, $routeParams) {
 
     $scope.shopItems = itemService.getItems();
+    $scope.image = "";
 
     $timeout(function () {
         $scope.item = $scope.getShopItem($routeParams.id);
+        if($scope.item.image === "" || $scope.item.image == null){
+            $scope.item.image = "https://placeholdit.imgix.net/~text?txtsize=19&txt=200%C3%97200&w=200&h=200"
+        }
     })
 
     $scope.addToCart = function (id) {
@@ -14,6 +18,7 @@ furryModule.controller("furryShopController", function ($scope, cartService, ite
         itemService.addItem($scope.item);
         $scope.item.name = '';
         $scope.item.price = '';
+        $scope.item.image = "https://placeholdit.imgix.net/~text?txtsize=19&txt=200%C3%97200&w=200&h=200"
         $location.path("/shop/manage")
         console.log("Added");
     }
@@ -33,8 +38,8 @@ furryModule.controller("furryShopController", function ($scope, cartService, ite
         $scope.shopItems = itemService.getItems();
     }
 
-    $scope.hideShopItem = function(id){
-        itemService.hideItem(id);       
+    $scope.hideShopItem = function (id) {
+        itemService.hideItem(id);
         $scope.shopItems = itemService.getItems();
     }
 
@@ -54,5 +59,21 @@ furryModule.controller("furryShopController", function ($scope, cartService, ite
     $scope.unfeatureItem = function (item) {
         itemService.unfeatureItem(item.id);
         $scope.shopItems = itemService.getItems();
+    }
+
+    $scope.previewFile = function () {
+        var file = event.target.files[0];
+        var img = document.getElementsByClassName("item-image")[0];
+        var URL = window.URL || window.webkitURL;
+        var srcTmp = URL.createObjectURL(file);
+        var reader = new FileReader();
+
+        img.src = srcTmp;
+
+        reader.addEventListener("load", function(){
+            $scope.item.image = reader.result;
+        });
+
+        reader.readAsDataURL(file);
     }
 });

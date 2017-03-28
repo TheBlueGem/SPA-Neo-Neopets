@@ -22,7 +22,9 @@
                 <ul class="remove-deco shop-items">
                     <li class="item" ng-repeat="item in shopItems">
                         <span class="shop-item-name">{{item.name}}</span>
-                        <img src="{{item.image}}" />
+                        <div class="item-image-container">
+                            <img class="item-image" src="{{item.image}}" />
+                        </div>
                         <span class="shop-item-price">Price: {{item.price}}</span>
 
                         <a class="link" ng-href="#/shop/manage" ng-click="featureItem(item)" ng-if="!item.featured">Feature</a>

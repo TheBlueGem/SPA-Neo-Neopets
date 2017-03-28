@@ -29,10 +29,12 @@
             <div class="inventory">
                 <h4>Inventory</h4>
                 <ul class="remove-deco">
-                    <li class="inventory-item" ng-repeat="item in currentPlayer.inventory">                        
-                            <span class="shop-item-name">{{item.name}}</span>
-                            <img src="{{item.image}}" />
-                            <span class="shop-item-price">Amount: {{item.amount}}</span>                        
+                    <li class="inventory-item" ng-repeat="item in currentPlayer.inventory">
+                        <span class="shop-item-name">{{item.name}}</span>
+                        <div class="item-image-container">
+                            <img class="item-image" src="{{item.image}}" />
+                        </div>
+                        <span class="shop-item-price">Amount: {{item.amount}}</span>
                     </li>
                 </ul>
             </div>
