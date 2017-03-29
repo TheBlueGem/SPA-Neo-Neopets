@@ -1,11 +1,12 @@
 furryModule.service('cartService', function ($rootScope, $cookies, $location, itemService, playerService, inventoryService) {
 
-    this.addToCart = function(id){
-        var element = document.getElementById(id);
+    this.addToCart = function (object) {
+        var element = document.getElementsByClassName(object.type).getElementById(object.id);
         var amountInput = element.getElementsByClassName("amount-input")[0]
 
         var cartItem = {
-            id: id,
+            type: object.type,
+            id: object.id,
             amount: amountInput.value
         }
 
@@ -13,14 +14,14 @@ furryModule.service('cartService', function ($rootScope, $cookies, $location, it
 
         var cart = $cookies.getObject("cart") || [];
         var alreadyInCart = false;
-        cart.forEach(function (item) {
-            if (item.id === id) {
-                item.amount = (parseInt(item.amount) + parseInt(cartItem.amount)).toString();
+        cart.forEach(function (cartobject) {
+            if (cartobject.type === object.type && cartobject.id === object.id) {
+                object.amount = (parseInt(object.amount) + parseInt(cartItem.amount)).toString();
                 alreadyInCart = true;
             }
         }, this);
-        
-        if(!alreadyInCart){
+
+        if (!alreadyInCart) {
             cart.push(cartItem);
         }
 
@@ -28,51 +29,59 @@ furryModule.service('cartService', function ($rootScope, $cookies, $location, it
         $rootScope.$broadcast('cartUpdated');
     }
 
-    this.getCart = function(){
+    this.getCart = function () {
         var cart = $cookies.getObject("cart") || [];
         var current = {};
         cart.total = "0";
-        cart.forEach(function(item) {
-            current = itemService.getItem(item.id);            
-            item.name = current.name;
-            item.price = current.price;
-            cart.total = (parseInt(cart.total) + parseInt(current.price) * parseInt(item.amount)).toString();
+        cart.forEach(function (object) {
+            if (object.type === "item") {
+                current = itemService.getItem(object.id);
+                object.name = current.name;
+                object.price = current.price;
+                cart.total = (parseInt(cart.total) + parseInt(current.price) * parseInt(object.amount)).toString();
+            }
+            else {
+                current = creatureService.getCreature(object.id);
+                object.name = current.name;
+                object.price = current.price;
+                cart.total = (parseInt(cart.total) + parseInt(current.price) * parseInt(object.amount)).toString();
+            }
         }, this);
         return cart;
     }
-    
-    this.removeFromCart = function(id) {
+
+    this.removeFromCart = function (type, id) {
         var cart = $cookies.getObject("cart");
-        cart.forEach(function (item) {
-            if (item.id === id) {
-                cart.splice(cart.indexOf(item), 1);
+        cart.forEach(function (object) {
+            if (object.type = type && object.id === id) {
+                cart.splice(cart.indexOf(object), 1);
             }
         }, this);
         $cookies.putObject("cart", cart);
         $rootScope.$broadcast("cartUpdated");
-    }    
+    }
 
-    this.emptyCart = function(){
+    this.emptyCart = function () {
         $cookies.put("cart", [])
         $rootScope.$broadcast("cartUpdated");
     }
 
-    this.checkout = function(){
+    this.checkout = function () {
         var currentPlayer = playerService.getCurrentPlayer();
-        if(currentPlayer == undefined){
+        if (currentPlayer == undefined) {
             $location.path("/login");
         }
-        else{
+        else {
             var cart = this.getCart();
             var cartTotal = parseInt(cart.total);
             var credits = parseInt(currentPlayer.credits);
-            if(cartTotal < credits){                
+            if (cartTotal < credits) {
                 credits -= cartTotal;
             }
             this.emptyCart();
             currentPlayer.credits = credits.toString();
-            
-            cart.forEach(function(item) {
+
+            cart.forEach(function (item) {
                 inventoryService.addItemToInventory(item, currentPlayer);
             }, this);
 
@@ -83,10 +92,10 @@ furryModule.service('cartService', function ($rootScope, $cookies, $location, it
                 showConfirmButton: false,
                 animation: "slide-from-top",
                 customClass: "alert"
-            });      
-            
+            });
+
             playerService.updatePlayer(currentPlayer);
-            playerService.setCurrentPlayer(currentPlayer);      
+            playerService.setCurrentPlayer(currentPlayer);
             $rootScope.$broadcast("currentPlayerUpdated");
         }
     }

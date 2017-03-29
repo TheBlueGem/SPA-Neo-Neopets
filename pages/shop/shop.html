@@ -19,6 +19,7 @@
         <div class="page-content">
             <div class="shop-wrapper">
                 <h2>Shop</h2>
+                <h3>Items</h3>
                 <ul class="remove-deco shop-items">
                     <li class="item" id="{{item.id}}" ng-repeat="item in shopItems" ng-if="!item.hidden">
                         <a class="link" ng-href="#/shop/item/{{item.id}}">
@@ -30,7 +31,22 @@
                         </a>
                         <label>Amount:</label>
                         <input type="number" class="amount-input" value="1" />
-                        <a class="link" href="#/shop" ng-click="addToCart(item.id)">Add to Cart</a>
+                        <a class="link" href="#/shop" ng-click="addToCart(item)">Add to Cart</a>
+                    </li>
+                </ul>
+                <h3>Creatures</h3>
+                <ul class="remove-deco shop-creatures">
+                    <li class="creature" id="{{creature.id}}" ng-repeat="creature in shopCreatures" ng-if="!creature.hidden">
+                        <a class="link" ng-href="#/shop/creature/{{creature.id}}">
+                            <span class="shop-creature-name">{{creature.name}}</span>
+                            <div class="creature-image-container">
+                                <img class="creature-image" src="{{creature.image}}" />
+                            </div>
+                            <span class="shop-creature-price">Price: {{creature.price}}</span>
+                        </a>
+                        <label>Amount:</label>
+                        <input type="number" class="amount-input" value="1" />
+                        <a class="link" href="#/shop" ng-click="addToCart(creature)">Add to Cart</a>
                     </li>
                 </ul>
             </div>

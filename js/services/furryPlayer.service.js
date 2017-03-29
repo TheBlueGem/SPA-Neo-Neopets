@@ -36,8 +36,11 @@ furryModule.service('playerService', function (storageService) {
         return player;
     }
 
-    this.updatePlayer = function(player){
-        this.setCurrentPlayer(player);
+    this.updatePlayer = function(player, profileEdit = false){
+        if(profileEdit){
+            this.setCurrentPlayer(player);
+        }
+        
         storageService.updateStorage("players", player.id, player);
     }
 });

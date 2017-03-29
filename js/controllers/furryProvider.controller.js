@@ -56,6 +56,26 @@ furryModule.config(function ($routeProvider, $locationProvider) {
             controller: 'furryShopController'
         })
 
+        .when("/shop/add-creature", {
+            templateUrl: 'pages/shop/add-creature.html',
+            controller: 'furryShopController'
+        })
+        
+        .when("/shop/edit/creature/:id", {
+            templateUrl: 'pages/shop/edit-creature.html',
+            controller: 'furryShopController'
+        })
+        
+        .when("/shop/creature/:id", {
+            templateUrl: 'pages/shop/add-creature.html',
+            controller: 'furryShopController'
+        })
+
+        .when("/games/simple-button-game", {
+            templateUrl: 'games/simple-button-game/simple-button-game.html',
+            controller: 'simpleButtonController'
+        })
+
 
 
     $locationProvider.hashPrefix('');

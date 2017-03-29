@@ -1,0 +1,14 @@
+<div id="#simple-button-game">
+    <div class="options">
+        <button class="options-button" ng-click="startGame()">Start</button>
+        <button class="options-button" ng-click="stopGame()">Stop</button>
+        <button class="options-button" ng-click="resetGame()">Reset</button>
+    </div>  
+    <span class="score">Score:{{score}}</label>
+    
+    <ul class="buttons remove-deco">
+        <li ng-repeat="button in buttons">
+            <button ng-class="button.class" ng-click="clicked(button)">{{button.value}}</button>
+        </li>
+    </div>
+</div>

@@ -41,7 +41,7 @@ furryModule.controller("furryPlayerController", function ($scope, $rootScope, $l
             }
         });
 
-        playerService.updatePlayer($scope.currentPlayer);
+        playerService.updatePlayer($scope.currentPlayer, true);
         $location.path("/player/" + $scope.currentPlayer.id)
     }
 

@@ -3,7 +3,7 @@ furryModule.service('storageService', function () {
         if (typeof (Storage) !== undefined) {
             if (localStorage.getItem(key) == null) {
                 if (!hasIdentity) {
-                    data.id = 1;
+                    data.id = "1";
                 }
 
                 localStorage.setItem(key, JSON.stringify([data]));
@@ -56,7 +56,7 @@ furryModule.service('storageService', function () {
     }
 
     this.getFromStorage = function (key) {
-        return JSON.parse(localStorage.getItem(key));
+        return JSON.parse(localStorage.getItem(key)) || [];
     }
 
 });

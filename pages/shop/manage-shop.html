@@ -29,13 +29,29 @@
 
                         <a class="link" ng-href="#/shop/manage" ng-click="featureItem(item)" ng-if="!item.featured">Feature</a>
                         <a class="link" ng-href="#/shop/manage" ng-click="unfeatureItem(item)" ng-if="item.featured">Unfeature</a>
-                        <a class="link" ng-href="#/shop/edit/item/{{item.id}}">Edit</a>
+                        <a class="link" ng-href="#/shop/edit/item/{{item.id}}" ng-click="setEditType(item)">Edit</a>
                         <a class="link" ng-href="#/shop/manage" ng-click="hideShopItem(item.id)" ng-if="!item.hidden">Hide</a>
                         <a class="link" ng-href="#/shop/manage" ng-click="hideShopItem(item.id)" ng-if="item.hidden">Show</a>
                         <a hidden class="link" ng-href="#/shop/manage" ng-click="removeShopItem(item.id)">Delete</a>
                     </li>
                 </ul>
-                <a class="link" ng-href="#/shop/add-item">Add Item</a>
+                <a class="link" ng-href="#/shop/add-item" ng-click="setEditType(item)">Add Item</a>
+
+                 <ul class="remove-deco shop-creatures">
+                    <li class="creature" ng-repeat="creature in shopCreatures">
+                        <span class="shop-creature-name">{{creature.name}}</span>
+                        <div class="creature-image-container">
+                            <img class="creature-image" src="{{creature.image}}" />
+                        </div>
+                        <span class="shop-creature-price">Price: {{creature.price}}</span>
+                        
+                        <a class="link" ng-href="#/shop/edit/creature/{{creature.id}}" ng-click="setEditType(creature)">Edit</a>
+                        <a class="link" ng-href="#/shop/manage" ng-click="hideShopCreature(creature.id)" ng-if="!creature.hidden">Hide</a>
+                        <a class="link" ng-href="#/shop/manage" ng-click="hideShopCreature(creature.id)" ng-if="creature.hidden">Show</a>
+                        <a hidden class="link" ng-href="#/shop/manage" ng-click="removeShopCreature(creature.id)">Delete</a>
+                    </li>
+                </ul>
+                <a class="link" ng-href="#/shop/add-creature"  ng-click="setEditType(creature)">Add Creature</a>
             </div>
         </div>
     </div>
