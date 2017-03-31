@@ -20,21 +20,21 @@
             <div class="player-info">
                 <h2>Player info</h2>
                 <ul class="remove-deco">
-                    <li>{{currentPlayer.name}}</li>
-                    <li>Date Joined: {{currentPlayer.dateJoined}}</li>
-                    <li><img src="{{currentPlayer.image}}" /></li>
+                    <li>{{player.name}}</li>
+                    <li>Date Joined: {{player.dateJoined}}</li>
+                    <li><img src="{{player.image}}" /></li>
                 </ul>
-                <a class="link" ng-href="#/player/edit/{{currentPlayer.id}}">Edit Profile</a>
+                <a class="link" ng-href="#/player/edit/{{player.id}}">Edit Profile</a>
             </div>
             <div class="inventory">
                 <h4>Inventory</h4>
                 <ul class="remove-deco">
-                    <li class="inventory-item" ng-repeat="item in currentPlayer.inventory">
+                    <li class="inventory-item" ng-repeat="item in player.inventory">
                         <span class="shop-item-name">{{item.name}}</span>
                         <div class="item-image-container">
-                            <img class="item-image" src="{{item.image}}" />
+                            <img class="item-image" data-ng-src="{{item.image}}" />
                         </div>
-                        <span class="shop-item-price">Amount: {{item.amount}}</span>
+                        <span class="shop-item-price" ng-if="item.type === 'item'">Amount: {{item.amount}}</span>
                     </li>
                 </ul>
             </div>

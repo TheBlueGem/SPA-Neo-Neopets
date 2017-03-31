@@ -1,5 +1,5 @@
-furryModule.service('playerService', function (storageService) {
- 
+furryModule.service('playerService', function (storageService, inventoryService) {
+
     this.setCurrentPlayer = function (player) {
         localStorage.setItem("currentPlayer", JSON.stringify(player));
     }
@@ -8,39 +8,45 @@ furryModule.service('playerService', function (storageService) {
         localStorage.removeItem("currentPlayer");
     }
 
-    this.addPlayer = function(player) {
+    this.addPlayer = function (player) {
         player.credits = "1000";
+        player.inventory = [];
         storageService.saveToStorage("players", player);
     }
 
-    this.getPlayers = function(){
+    this.getPlayers = function () {
         var players = storageService.getFromStorage("players");
-        if(players == undefined){
+        if (players == undefined) {
             players = [];
         }
         return players;
     }
 
-    this.getCurrentPlayer = function(){
+    this.getCurrentPlayer = function () {
         return JSON.parse(localStorage.getItem("currentPlayer"));
     }
 
-    this.getPlayer = function(id){
+    this.getPlayer = function (id, withInventory = false) {
         var players = storageService.getFromStorage("players");
         var player = null;
-        players.forEach(function(current) {
-            if(current.id === id){
+        players.forEach(function (current) {
+            if (current.id === id) {
                 player = current;
             }
         }, this);
+        player.inventory = inventoryService.getInventory(player);
         return player;
     }
 
-    this.updatePlayer = function(player, profileEdit = false){
-        if(profileEdit){
+    this.getPlayerWithInventory = function(id){
+        return this.getPlayer(id, true);
+    }
+
+    this.updatePlayer = function (player, profileEdit = false) {
+        if (profileEdit) {
             this.setCurrentPlayer(player);
         }
-        
+
         storageService.updateStorage("players", player.id, player);
     }
 });

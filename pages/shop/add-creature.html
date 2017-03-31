@@ -22,18 +22,19 @@
                 <form ng-submit="addShopCreature()">
                     <div class="form-field">
                         <label>Name:</label>
-                        <input type="text" ng-model="creature.name" required/>
+                        <input type="text" ng-model="object.name" required/>
                     </div>
                     <div class="form-field">
                         <label>Price:</label>
-                        <input type="number" ng-model="creature.price" required/>
+                        <input type="number" ng-model="object.price" required/>
                     </div>
                     <div class="form-field">
                         <div class="image-input">
                             <label>Image:</label>
-                            <input type="file" upload="previewFile" />
+                            <input type="file" upload="uploadFile" />
+                            <input id="editTypeInput" hidden type="text" value="creature" />
                         </div>
-                        <img src="{{creature.image}}" class="upload-image"/>
+                        <img data-ng-src="{{object.image}}" class="upload-image"/>
                     </div>
                     <div class="form-field">
                         <button type="submit" class="button">Save</button>

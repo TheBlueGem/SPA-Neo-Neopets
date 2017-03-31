@@ -1,25 +1,28 @@
-furryModule.service('cartService', function ($rootScope, $cookies, $location, itemService, playerService, inventoryService) {
+furryModule.service('cartService', function ($rootScope, $cookies, $location, playerService, inventoryService) {
 
     this.addToCart = function (object) {
-        var element = document.getElementsByClassName(object.type).getElementById(object.id);
-        var amountInput = element.getElementsByClassName("amount-input")[0]
-
+        if(object.type === "creature"){
+            object.amount = "1";
+        }
         var cartItem = {
             type: object.type,
             id: object.id,
-            amount: amountInput.value
+            name: object.name,
+            amount: object.amount,
+            price: object.price
         }
-
-        amountInput.value = "1";
 
         var cart = $cookies.getObject("cart") || [];
         var alreadyInCart = false;
-        cart.forEach(function (cartobject) {
-            if (cartobject.type === object.type && cartobject.id === object.id) {
-                object.amount = (parseInt(object.amount) + parseInt(cartItem.amount)).toString();
-                alreadyInCart = true;
-            }
-        }, this);
+
+        if (object.type === "item") {
+            cart.forEach(function (cartobject) {
+                if (cartobject.type === object.type && cartobject.id === object.id) {
+                    cartobject.amount = (parseInt(cartobject.amount) + parseInt(object.amount)).toString();
+                    alreadyInCart = true;
+                }
+            }, this);
+        }
 
         if (!alreadyInCart) {
             cart.push(cartItem);
@@ -34,18 +37,7 @@ furryModule.service('cartService', function ($rootScope, $cookies, $location, it
         var current = {};
         cart.total = "0";
         cart.forEach(function (object) {
-            if (object.type === "item") {
-                current = itemService.getItem(object.id);
-                object.name = current.name;
-                object.price = current.price;
-                cart.total = (parseInt(cart.total) + parseInt(current.price) * parseInt(object.amount)).toString();
-            }
-            else {
-                current = creatureService.getCreature(object.id);
-                object.name = current.name;
-                object.price = current.price;
-                cart.total = (parseInt(cart.total) + parseInt(current.price) * parseInt(object.amount)).toString();
-            }
+            cart.total = (parseInt(cart.total) + parseInt(object.price) * parseInt(object.amount)).toString();
         }, this);
         return cart;
     }
@@ -53,7 +45,7 @@ furryModule.service('cartService', function ($rootScope, $cookies, $location, it
     this.removeFromCart = function (type, id) {
         var cart = $cookies.getObject("cart");
         cart.forEach(function (object) {
-            if (object.type = type && object.id === id) {
+            if (object.type === type && object.id === id) {
                 cart.splice(cart.indexOf(object), 1);
             }
         }, this);

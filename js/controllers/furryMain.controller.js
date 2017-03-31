@@ -1,7 +1,7 @@
 var furryModule = angular.module("furryModule", ['ngRoute', 'ngCookies', 'ngAnimate', 'simpleButtonGame']);
 
 furryModule.controller("furryMainController", function ($scope, cartService, itemService, playerService, storageService) {
-    $scope.featuredItems = itemService.getFeaturedItems();
+    $scope.featuredItems = itemService.getFeaturedItems();      
     $scope.currentPlayer = playerService.getCurrentPlayer();
     $scope.cart = cartService.getCart();
 
@@ -29,8 +29,8 @@ furryModule.controller("furryMainController", function ($scope, cartService, ite
             });    
     })
 
-    $scope.removeFromCart = function(id){
-        cartService.removeFromCart(id);
+    $scope.removeFromCart = function(type, id){
+        cartService.removeFromCart(type, id);
     }
 
     $scope.logout = function () {
@@ -42,7 +42,6 @@ furryModule.controller("furryMainController", function ($scope, cartService, ite
         cartService.checkout();
     }
 
-    console.log("HELP ME")
 });
 
 

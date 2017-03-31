@@ -1,50 +1,66 @@
 furryModule.controller("furryShopController", function ($scope, $http, cartService, itemService, creatureService, $timeout, $location, $routeParams) {
 
-    $scope.shopItems = itemService.getItems();
+    $scope.shopItems = getItems();
     $scope.shopCreatures = creatureService.getCreatures();
     $scope.image = "";
-    $scope.editType = "";
 
-    $timeout(function () {
-        $scope.item = $scope.getShopItem($routeParams.id);
-        $scope.item.type = "item";
-        if ($scope.item.image === "" || $scope.item.image == null) {
-            $scope.item.image = "https://placeholdit.imgix.net/~text?txtsize=19&txt=200%C3%97200&w=200&h=200"
-        }
-    })
 
-    $timeout(function () {
-        $scope.creature = $scope.getShopCreature($routeParams.id);
-        $scope.creature.type = "creature";
-        if ($scope.creature.image === "" || $scope.creature.image == null) {
-            $scope.creature.image = "https://placeholdit.imgix.net/~text?txtsize=19&txt=200%C3%97200&w=200&h=200"
-        }
-    })
+    if ($routeParams.id != null) {
+        $timeout(function () {
+            var editType = document.getElementById("editTypeInput").value;
 
-    $scope.setEditType = function (object) {
-        $scope.editType = object.type;
+            if (editType === "item") {
+                $scope.object = $scope.getShopItem($routeParams.id);
+            }
+            else
+            {
+                $scope.object = $scope.getShopCreature($routeParams.id);
+            }
+
+
+            if ($scope.object.image === "" || $scope.object.image == null) {
+                $scope.object.image = "https://placeholdit.imgix.net/~text?txtsize=19&txt=200%C3%97200&w=200&h=200"
+            }
+        })
     }
 
     $scope.addToCart = function (object) {
         cartService.addToCart(object);
     }
 
-    $scope.addShopItem = function () {
-        $scope.item.type = "item";
-        itemService.addItem($scope.item);
-        $scope.item.name = '';
-        $scope.item.price = '';
-        $scope.item.image = "https://placeholdit.imgix.net/~text?txtsize=19&txt=200%C3%97200&w=200&h=200"
+    function addToShop(type) {
+        $scope.object.type = type;
+        if (type === "item") {
+            itemService.addItem($scope.object);
+        }
+        else {
+            creatureService.addCreature($scope.object);
+        }
+        $scope.object.name = '';
+        $scope.object.price = '';
+        $scope.object.image = "https://placeholdit.imgix.net/~text?txtsize=19&txt=200%C3%97200&w=200&h=200"
         $location.path("/shop/manage")
         console.log("Added");
+    }
+
+    $scope.addShopItem = function () {
+        addToShop("item");
     }
 
     $scope.getShopItem = function (id) {
         return itemService.getItem(id);
     }
 
+    function getItems() {
+        var items = itemService.getItems();
+        for (i = 0; i < items.length; i++) {
+            items[i].amount = 1;
+        }
+        return items;
+    }
+
     $scope.updateShopItem = function () {
-        itemService.updateItem($scope.item);
+        itemService.updateItem($scope.object);
         $location.path("/shop/manage");
         console.log("Edited");
     }
@@ -78,13 +94,7 @@ furryModule.controller("furryShopController", function ($scope, $http, cartServi
     }
 
     $scope.addShopCreature = function () {
-        $scope.item.type = "creature";
-        creatureService.addCreature($scope.creature);
-        $scope.creature.name = '';
-        $scope.creature.price = '';
-        $scope.creature.image = "https://placeholdit.imgix.net/~text?txtsize=19&txt=200%C3%97200&w=200&h=200"
-        $location.path("/shop/manage")
-        console.log("Added");
+        addToShop("creature")
     }
 
     $scope.getShopCreature = function (id) {
@@ -92,7 +102,7 @@ furryModule.controller("furryShopController", function ($scope, $http, cartServi
     }
 
     $scope.updateShopCreature = function () {
-        creatureService.updateCreature($scope.creature);
+        creatureService.updateCreature($scope.object);
         $location.path("/shop/manage");
         console.log("Edited");
     }
@@ -107,7 +117,7 @@ furryModule.controller("furryShopController", function ($scope, $http, cartServi
         $scope.shopcreatures = creatureService.getCreatures();
     }
 
-    $scope.previewFile = function () {
+    $scope.uploadFile = function () {
         var file = event.target.files[0];
         var img = document.getElementsByClassName("upload-image")[0];
         var URL = window.URL || window.webkitURL;
@@ -117,13 +127,7 @@ furryModule.controller("furryShopController", function ($scope, $http, cartServi
         img.src = srcTmp;
 
         reader.addEventListener("load", function () {
-            if($scope.editType === "item"){
-                $scope.item.image = reader.result;
-            }
-            else
-            {
-                $scope.creature.image = reader.result;
-            }            
+            $scope.object.image = reader.result;
         });
 
         reader.readAsDataURL(file);

@@ -1,11 +1,7 @@
-furryModule.controller("furryPlayerController", function ($scope, $rootScope, $location, $timeout, $routeParams, playerService, itemService) {
+furryModule.controller("furryPlayerController", function ($scope, $rootScope, $location, $timeout, $routeParams, playerService, inventoryService) {
      
-    if (playerService.getCurrentPlayer() !== undefined) {
+    if (playerService.getCurrentPlayer() !== null) {
         $scope.currentPlayer = playerService.getCurrentPlayer();
-        $scope.currentPlayer.inventory.forEach(function(item) {
-            var storageItem = itemService.getItem(item.id);
-            item.image = storageItem.image;
-        }, this);
     }
 
     $scope.playerLogin = {
@@ -13,24 +9,11 @@ furryModule.controller("furryPlayerController", function ($scope, $rootScope, $l
         password: ""
     }
 
-    $scope.players = playerService.getPlayers();
+    $scope.players = playerService.getPlayers();    
 
     if ($routeParams.id !== undefined) {
         $timeout(function () {
-            $scope.player = $scope.getPlayerById($routeParams.id);
-        })
-    }
-
-    $scope.getPlayerById = function (id) {
-        var tempPlayer = {};
-        $timeout(function () {
-            $scope.players.forEach(function (player) {
-                if (player.id === id) {
-                    tempPlayer = player;
-                    return;
-                }
-            }, this);
-            return tempPlayer;
+            $scope.player = playerService.getPlayer($routeParams.id);
         })
     }
 
@@ -59,7 +42,8 @@ furryModule.controller("furryPlayerController", function ($scope, $rootScope, $l
         $timeout(function () {
             $scope.players.forEach(function (player) {
                 if (player.name === $scope.playerLogin.name && player.password === $scope.playerLogin.password) {
-                    playerService.setCurrentPlayer(player);
+                    var fullPlayer = playerService.getPlayerWithInventory(player.id);
+                    playerService.setCurrentPlayer(fullPlayer);
                     $rootScope.$broadcast('currentPlayerUpdated');
                     $timeout(function(){
                         $location.path("/");

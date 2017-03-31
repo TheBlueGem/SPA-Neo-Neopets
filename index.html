@@ -42,7 +42,7 @@
             <span>Item: {{item.name}}</span>
             <span>Amount: {{item.amount}}</span>
             <span>Price: {{item.price}}</span>
-            <button ng-click="removeFromCart(item.id)">Remove</button>
+            <button ng-click="removeFromCart(item.type, item.id)">Remove</button>
           </li>
           <li>
             <span>Total: {{cart.total}}</span>
@@ -85,6 +85,7 @@
   <script type="text/javascript" src="js/services/furryCart.service.js"></script>
   <script type="text/javascript" src="js/services/furryInventory.service.js"></script>
   <script type="text/javascript" src="js/directives/furryUpload.directive.js"></script>
+  <script type="text/javascript" src="js/directives/furrySrc.directive.js"></script>
   
 </body>
 
