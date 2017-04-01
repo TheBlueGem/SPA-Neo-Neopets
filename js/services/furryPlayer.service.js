@@ -26,7 +26,10 @@ furryModule.service('playerService', function (storageService, inventoryService)
         return JSON.parse(localStorage.getItem("currentPlayer"));
     }
 
-    this.getPlayer = function (id, withInventory = false) {
+    this.getPlayer = function (id, withInventory) {
+        if(withInventory == null){
+            withInventory = false;
+        }
         var players = storageService.getFromStorage("players");
         var player = null;
         players.forEach(function (current) {
@@ -42,7 +45,10 @@ furryModule.service('playerService', function (storageService, inventoryService)
         return this.getPlayer(id, true);
     }
 
-    this.updatePlayer = function (player, profileEdit = false) {
+    this.updatePlayer = function (player, profileEdit) {
+         if(profileEdit == null){
+            profileEdit = false;
+        }
         if (profileEdit) {
             this.setCurrentPlayer(player);
         }

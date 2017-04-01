@@ -17,7 +17,6 @@ furryModule.controller("furryShopController", function ($scope, $http, cartServi
                 $scope.object = $scope.getShopCreature($routeParams.id);
             }
 
-
             if ($scope.object.image === "" || $scope.object.image == null) {
                 $scope.object.image = "https://placeholdit.imgix.net/~text?txtsize=19&txt=200%C3%97200&w=200&h=200"
             }
@@ -34,7 +33,9 @@ furryModule.controller("furryShopController", function ($scope, $http, cartServi
             itemService.addItem($scope.object);
         }
         else {
-            creatureService.addCreature($scope.object);
+            var creature = $scope.object;
+            creature.level = "1";
+            creatureService.addCreature(creature);
         }
         $scope.object.name = '';
         $scope.object.price = '';
@@ -94,7 +95,7 @@ furryModule.controller("furryShopController", function ($scope, $http, cartServi
     }
 
     $scope.addShopCreature = function () {
-        addToShop("creature")
+        addToShop("creature");
     }
 
     $scope.getShopCreature = function (id) {

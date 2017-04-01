@@ -15,10 +15,20 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      '../js/libraries/angular.js',
+      '../js/libraries/angular-mocks.js',
+      '../js/libraries/angular-route.js',
+      '../js/libraries/angular-cookies.js',
+      '../js/libraries/angular-animate.js',
+      '../js/libraries/sweetalert-dev.js',
+      "../games/simple-button-game/simple-button-game.controller.js",   
+      '../js/controllers/furryMain.controller.js',
+      '../js/controllers/*.js',
+      '../js/directives/*.js',
+      '../js/filters/*.js',
+      '../js/services/*.js',         
       'spec/*.js',
-      '../js/angular.min.js',
-      '../js/angular-route.js',
-      '../js/*.js',
+      'spec/**/*.js'
     ],
 
 

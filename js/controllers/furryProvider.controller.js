@@ -5,12 +5,12 @@ furryModule.config(function ($routeProvider, $locationProvider) {
             templateUrl: 'pages/home.html',
             controller: 'furryMainController'
         })
-
+/*
         .when("/about", {
             templateUrl: 'pages/about.html',
             controller: 'furryAboutController'
         })
-
+*/
         .when("/login", {
             templateUrl: 'pages/player/login.html',
             controller: 'furryPlayerController'

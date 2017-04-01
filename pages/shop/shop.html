@@ -19,9 +19,12 @@
         <div class="page-content">
             <div class="shop-wrapper">
                 <h2>Shop</h2>
-                <h3>Items</h3>
+                <div class="search-container">
+                    <label>Search:</label><input type="text" class="search" ng-model="searchInput" placeholder="Search"/>
+                </div>
+                <h3 ng-hide="searchInput">Items</h3>
                 <ul class="remove-deco shop-items">
-                    <li class="item" ng-repeat="item in shopItems" ng-if="!item.hidden">
+                    <li class="item" ng-repeat="item in shopItems | customSearch:searchInput" ng-if="!item.hidden">
                         <a class="link" ng-href="#/shop/item/{{item.id}}">
                             <span class="shop-item-name">{{item.name}}</span>
                             <div class="item-image-container">
@@ -34,9 +37,9 @@
                         <a class="link" href="#/shop" ng-click="addToCart(item)">Add to Cart</a>
                     </li>
                 </ul>
-                <h3>Creatures</h3>
+                <h3 ng-hide="searchInput">Creatures</h3>
                 <ul class="remove-deco shop-creatures">
-                    <li class="creature" ng-repeat="creature in shopCreatures" ng-if="!creature.hidden">
+                    <li class="creature" ng-repeat="creature in shopCreatures | customSearch:searchInput" ng-if="!creature.hidden">
                         <a class="link" ng-href="#/shop/creature/{{creature.id}}">
                             <span class="shop-creature-name">{{creature.name}}</span>
                             <div class="creature-image-container">

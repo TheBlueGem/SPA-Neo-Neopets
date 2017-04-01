@@ -1,5 +1,8 @@
 furryModule.service('storageService', function () {
-    this.saveToStorage = function (key, data, hasIdentity = false) {
+    this.saveToStorage = function (key, data, hasIdentity) {
+        if (hasIdentity == undefined) {
+            hasIdentity = false;
+        }
         if (typeof (Storage) !== undefined) {
             if (localStorage.getItem(key) == null) {
                 if (!hasIdentity) {
