@@ -26,3 +26,9 @@
 .options{
     margin-bottom: 10px;
 }
+
+#simple-button-game{
+    background: rgba(255, 80, 69, 1);
+    padding: 20px;
+    margin-bottom: 20px;
+}

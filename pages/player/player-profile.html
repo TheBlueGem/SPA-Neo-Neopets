@@ -20,7 +20,7 @@
             <div class="player-info">
                 <h2>Player info</h2>
                 <ul class="remove-deco">
-                    <li>{{player.name}}</li>
+                    <li>Name: {{player.name}}</li>
                     <li>Date Joined: {{player.dateJoined}}</li>
                     <li><img src="{{player.image}}" /></li>
                 </ul>
@@ -29,12 +29,16 @@
             <div class="inventory">
                 <h4>Inventory</h4>
                 <ul class="remove-deco">
-                    <li class="inventory-item" ng-repeat="item in player.inventory">
-                        <span class="shop-item-name">{{item.name}}</span>
+                    <li ng-repeat="item in player.inventory">
+                        <span class="item-name">{{item.name}}</span>
                         <div class="item-image-container">
                             <img class="item-image" data-ng-src="{{item.image}}" />
                         </div>
-                        <span class="shop-item-price" ng-if="item.type === 'item'">Amount: {{item.amount}}</span>
+
+
+                        <span class="item-type">{{item.type}}</span>
+                        <span class="item-amount" ng-if="item.type === 'item'">Amount: {{item.amount}}</span>
+                        <span class="level" ng-if="item.level">Level: {{item.level}}</span>
                     </li>
                 </ul>
             </div>

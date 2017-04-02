@@ -3,6 +3,7 @@ furryModule.controller("furryShopController", function ($scope, $http, cartServi
     $scope.shopItems = getItems();
     $scope.shopCreatures = creatureService.getCreatures();
     $scope.image = "";
+    $scope.object = {}
 
 
     if ($routeParams.id != null) {

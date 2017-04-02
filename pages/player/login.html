@@ -19,11 +19,15 @@
         <div class="page-content">
             <h2>Login</h2>
             <form class="form login" ng-submit="login()">
-                <label>Login name:</label>
-                <input type="text" ng-model="playerLogin.name" />
-                <label>Password:</label>
-                <input type="text" ng-model="playerLogin.password" />
-                <button type="submit">Login</button>
+                <div class="login-field">
+                    <label class="input">Login name:</label>
+                    <input type="text" ng-model="playerLogin.name" />
+                </div>
+                <div class="login-field">
+                    <label class="input">Password:</label>
+                    <input type="text" ng-model="playerLogin.password" />
+                </div>
+                <button class="button" type="submit">Login</button>
             </form>
             <a class="link" href="#/register">Register</a>
         </div>

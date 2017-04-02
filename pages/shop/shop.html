@@ -25,14 +25,14 @@
                 <h3 ng-hide="searchInput">Items</h3>
                 <ul class="remove-deco shop-items">
                     <li class="item" ng-repeat="item in shopItems | customSearch:searchInput" ng-if="!item.hidden">
-                        <a class="link" ng-href="#/shop/item/{{item.id}}">
+                        <a class="link" ng-href="">
                             <span class="shop-item-name">{{item.name}}</span>
                             <div class="item-image-container">
                                 <img class="item-image" ng-src="{{item.image}}" />
                             </div>
-                            <span class="shop-item-price">Price: {{item.price}}</span>
+                            <span class="price">Price: {{item.price}}</span>
                         </a>
-                        <label>Amount:</label>
+                        <label class="item-amount">Amount:</label>
                         <input type="number" class="amount-input" ng-model="item.amount" />
                         <a class="link" href="#/shop" ng-click="addToCart(item)">Add to Cart</a>
                     </li>
@@ -40,12 +40,12 @@
                 <h3 ng-hide="searchInput">Creatures</h3>
                 <ul class="remove-deco shop-creatures">
                     <li class="creature" ng-repeat="creature in shopCreatures | customSearch:searchInput" ng-if="!creature.hidden">
-                        <a class="link" ng-href="#/shop/creature/{{creature.id}}">
+                        <a class="link" ng-href="">
                             <span class="shop-creature-name">{{creature.name}}</span>
                             <div class="creature-image-container">
                                 <img class="creature-image" ng-src="{{creature.image}}" />
                             </div>
-                            <span class="shop-creature-price">Price: {{creature.price}}</span>
+                            <span class="price">Price: {{creature.price}}</span>
                         </a>
                         <a class="link" href="#/shop" ng-click="addToCart(creature)">Add to Cart</a>
                     </li>

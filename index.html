@@ -15,51 +15,53 @@
 </head>
 
 <body ng-controller="furryMainController">
-  <!-- Status bar overlay for full screen mode (PhoneGap) -->
-  <div class="statusbar-overlay"></div>
-  <!-- Panels overlay-->
-  <div class="panel-overlay"></div>
-  <!-- Left panel with reveal effect-->
-  <div class="panel panel-left panel-reveal">
-    <div class="content-block">
-      <h5>~Furry Simulator!~</h5>
-      <div class="player-stats" ng-if="currentPlayer">
-      <span class="credits">Credits: {{currentPlayer.credits}}</span>
+  <div class="container">
+    <!-- Status bar overlay for full screen mode (PhoneGap) -->
+    <div class="statusbar-overlay"></div>
+    <!-- Panels overlay-->
+    <div class="panel-overlay"></div>
+    <!-- Left panel with reveal effect-->
+    <div class="panel panel-left panel-reveal">
+      <div class="content-block">
+        <h1>~Furry Simulator!~</h1>
+        <div class="player-stats" ng-if="currentPlayer">
+          <span class="credits">Credits: {{currentPlayer.credits}}</span>
+        </div>
+        <a class="link pull-right" href="#/login" ng-if="!currentPlayer">Login</a>
+        <a class="link pull-right" href="#" ng-if="currentPlayer" ng-click="logout()">Logout</a>
       </div>
-      <a class="link pull-right" href="#/login" ng-if="!currentPlayer">Login</a>
-      <a class="link pull-right" href="#" ng-if="currentPlayer" ng-click="logout()">Logout</a>
     </div>
-  </div>
-  <!-- Views -->
-  <div class="views">
-    <!-- Your main view, should have "view-main" class -->
-    <div class="view view-main">
-      <div ng-view></div>
-      <div class="cart fade-element-in" ng-if="cart.length">
-        <h2>Cart</h2>
-        <ol class="remove-deco">
-          <li ng-repeat="item in cart">
-            <span>Item: {{item.name}}</span>
-            <span>Amount: {{item.amount}}</span>
-            <span>Price: {{item.price}}</span>
-            <button ng-click="removeFromCart(item.type, item.id)">Remove</button>
-          </li>
-          <li>
-            <span>Total: {{cart.total}}</span>
-            <button ng-click="checkout()">Checkout!</button>
-          </li>
-        </ol>
-      </div>
-      <!-- Bottom Toolbar-->
-      <div class="toolbar">
-        <div class="toolbar-inner">
-          <!-- Toolbar links -->
-          <a href="#" class="link">Home</a>
-          <a href="#/player/{{currentPlayer.id}}" class="link" ng-if="currentPlayer">Profile</a>
-          <a href="#/shop" class="link shop">Shop</a>
-          <a href="#/shop/manage" class="link">Manage Shop</a>
-          <a href="#/register" class="link" ng-if="!currentPlayer">Register</a>
-          <a href="#/games/simple-button-game" class="link">Button Game!</a>
+    <!-- Views -->
+    <div class="views">
+      <!-- Your main view, should have "view-main" class -->
+      <div class="view view-main">
+        <div ng-view></div>
+        <div class="cart fade-element-in" ng-if="cart.length">
+          <h2>Cart</h2>
+          <ol class="remove-deco">
+            <li ng-repeat="item in cart">
+              <span>Item: {{item.name}}</span>
+              <span>Amount: {{item.amount}}</span>
+              <span>Price: {{item.price}}</span>
+              <button class = "button" ng-click="removeFromCart(item.type, item.id)">Remove</button>
+            </li>
+            <li>
+              <span>Total: {{cart.total}}</span>
+              <button class="button" ng-click="checkout()">Checkout!</button>
+            </li>
+          </ol>
+        </div>
+        <!-- Bottom Toolbar-->
+        <div class="toolbar">
+          <div class="toolbar-inner">
+            <!-- Toolbar links -->
+            <a href="#" class="link">Home</a>
+            <a href="#/player/{{currentPlayer.id}}" class="link" ng-if="currentPlayer">Profile</a>
+            <a href="#/shop" class="link shop">Shop</a>
+            <a href="#/shop/manage" class="link">Manage Shop</a>
+            <a href="#/register" class="link" ng-if="!currentPlayer">Register</a>
+            <a href="#/games/simple-button-game" class="link">Button Game!</a>
+          </div>
         </div>
       </div>
     </div>
@@ -70,7 +72,7 @@
   <script src="js/libraries/angular-cookies.js"></script>
   <script src="js/libraries/angular-animate.js"></script>
   <script src="js/libraries/sweetalert-dev.js"></script>
-  
+
   <script type="text/javascript" src="games/simple-button-game/simple-button-game.controller.js"></script>
   <script type="text/javascript" src="js/controllers/furryMain.controller.js"></script>
   <script type="text/javascript" src="js/controllers/furryProvider.controller.js"></script>
@@ -86,7 +88,7 @@
   <script type="text/javascript" src="js/directives/furrySrc.directive.js"></script>
   <script type="text/javascript" src="js/directives/furrySrc.directive.js"></script>
   <script type="text/javascript" src="js/filters/furrySearch.filter.js"></script>
-  
+
 </body>
 
 </html>

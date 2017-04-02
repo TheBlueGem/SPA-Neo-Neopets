@@ -2,7 +2,7 @@
 body{
     width: 1024px;
     margin: 0 auto;
-    background-color: yellow;    
+    background-color: orangered;    
     font-family: 'Oxygen', sans-serif;    
 }
 
@@ -10,8 +10,103 @@ h1, h2, h3, h4, h5{
     font-family: 'Source Sans Pro', sans-serif;
 }
 
+h1{
+    display: inline;
+    font-size: 20px;
+    color: #5c00ad;
+    background: #0072ff;
+    padding: 5px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+h3{
+    margin: 25px 0 0 0;
+}
+
+input[type="text"], input[type="number"]{
+    background: rgb(189, 46, 172);
+    border-color: #5a2e82;
+    padding: 3px;
+}
+
+input[type="text"]::-webkit-input-placeholder{
+    color: rgb(209, 96, 172);
+}
+
+
+.link, .button{
+    text-align: center;
+    font-size: 14px;
+    display: inline-block;
+    color: mediumblue;
+    text-decoration: none;
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.5s, color 0.5s;
+    min-width: 80px;
+  }
+
+.link:hover, .button:hover{
+    cursor: pointer;
+    background: darkcyan;
+    color: white;
+}
+
+.link, .inventory li, .button{
+    background: rgba(210, 63, 128, 1)
+}
+
+.button{
+    border: none;
+}
+
+.views, .panel{
+    border-top: orangered solid 5px;    
+    background-color: darkorange;
+}
+
 .page-content{
    margin-bottom: 10px;
+}
+
+.page-content{
+    background: rgba(255, 80, 69, 1);
+    padding: 20px;
+}
+
+.inventory, .player-info a, .button, .player-info li, .register-field, .login-field{
+    margin-top: 10px;
+}
+
+.inventory li, .shop-items li, .shop-creatures li, .featured-items li{
+    vertical-align: top;
+    text-align: center;
+    min-width: 200px;
+    padding: 10px;
+    display: inline-block;
+    border-radius: 12px;
+    margin: 5px;
+}
+
+li .item-name, li .item-type, li .creature-name{
+    font-weight: bold;
+    display: block;
+}
+
+.inventory li .item-type{
+    text-transform: capitalize;
+}
+
+.inventory li .item-image-container, li .item-amount, li .level, li .item-type, li .link, li .price{
+    margin-top: 5px;
+}
+
+li .item-amount, .inventory li .level, li .price{
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
 }
 
 .player-stats{
@@ -19,12 +114,20 @@ h1, h2, h3, h4, h5{
     margin-left: 500px;        
 }
 
+.input{
+    display: inline-block;
+    width: 100px;
+}
+
+.login-field, .register-field{
+    display: block;
+}
+
 .pull-right{
     float: right;
 }
 
-.panel .content-block{
-    background-color: darkorange;        
+.panel .content-block{     
     height: 20px;
     padding: 20px;
 }
@@ -35,7 +138,6 @@ h1, h2, h3, h4, h5{
 }
 
 .views{
-    background-color: orangered;
     padding: 20px;
 }
 
@@ -49,10 +151,9 @@ h1, h2, h3, h4, h5{
     display: inline-block;
     padding: 10px;
     width: 20%;
-    height: 240px;
 }
 
-.form-field{
+.form-field, .login{
     margin-bottom: 10px;
 }
 
