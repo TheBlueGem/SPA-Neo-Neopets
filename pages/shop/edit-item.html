@@ -32,13 +32,15 @@
                         <div class="image-input">
                             <label>Image:</label>
                             <input type="file" upload="uploadFile" />
-                            <input id="editTypeInput" hidden type="text" value="item" />
                         </div>
-                        <img ng-src="{{object.image}}" class="upload-image" alt="img" />
+                        <img ng-src="{{object.image}}" class="upload-image" />
                     </div>
                     <div class="form-field">
                         <button type="submit" class="button">Save</button>
                     </div>
+
+
+                    <input id="editTypeInput" hidden type="text" value="item" />
                 </form>
             </div>
         </div>
