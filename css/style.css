@@ -247,7 +247,6 @@ li .item-amount, .inventory li .level, li .price{
     width: 200px;
 }
 
-.item-image-container, .upload-image-container, .creature-image.container{
-    height: 200px;
+.item-image-container, .upload-image-container, .creature-image.container{    
     width: 200px;
 }
